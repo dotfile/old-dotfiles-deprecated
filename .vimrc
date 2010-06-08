@@ -35,6 +35,8 @@ if has("gui_running")
 	set guioptions-=T			" remove toolbar
 	"set guioptions-=m			" remove menu bar
 	colorscheme darkspectrum	" gui colors (doesn't seem to work in vim)
+else
+	colorscheme ir_black		" console colors	
 endif
 
 set browsedir=buffer
