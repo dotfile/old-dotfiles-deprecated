@@ -2,14 +2,16 @@
 
 set nocompatible		" no vi bug compatibility
 set modelines=0			" no modelines (for security)
+"set encoding=utf-8		" encoding should be utf-8
 
-set autoindent			" auto indenting
+filetype plugin indent on " filetype dependent indenting and plugins
+set autoindent			" auto indents line relative to line above
 set smartindent
 
 set tabstop=4			" tab width preference
 set shiftwidth=4		" tab width preference
 "set expandtab			" uses spaces rather than tabs
-set backspace=eol,start,indent " allows backspacing over
+set backspace=eol,start,indent " backspace over everything in insert mode
 set smarttab 			" smarter tab and backspace
 
 "set showmatch
@@ -38,6 +40,7 @@ if has("gui_running")
 endif
 
 set browsedir=current
+set backup backupdir=$HOME/.vim/backup " set backup directory
 
 " Python syntax highlighting
 let python_highlight_all = 1
