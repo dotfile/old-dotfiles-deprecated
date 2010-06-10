@@ -2,14 +2,16 @@
 
 set nocompatible		" no vi bug compatibility
 set modelines=0			" no modelines (for security)
+"set encoding=utf-8		" encoding should be utf-8
 
-set autoindent			" auto indenting
+filetype plugin indent on " filetype dependent indenting and plugins
+set autoindent			" auto indents line relative to line above
 set smartindent
 
 set tabstop=4			" tab width preference
 set shiftwidth=4		" tab width preference
 "set expandtab			" uses spaces rather than tabs
-set backspace=eol,start,indent " allows backspacing over
+set backspace=eol,start,indent " backspace over everything in insert mode
 set smarttab 			" smarter tab and backspace
 
 "set showmatch
@@ -41,7 +43,8 @@ else
 
 endif
 
-set browsedir=buffer
+set browsedir=current
+set backup backupdir=$HOME/.vim/backup " set backup directory
 
 " Python syntax highlighting
 let python_highlight_all = 1
@@ -49,7 +52,7 @@ let python_slow_sync = 1
 
 " Set columns to 79
 set columns=79					" word wraps after 79
-"set tw=79						" force margin at 79 characters
+"set tw=79						" *force* margin at 79 characters
 
 " Highlight text going beyond column 79
 highlight LenErr ctermbg=darkred ctermfg=white guibg=#592929
@@ -74,10 +77,45 @@ map <C-s> :w<CR>				" save file
 vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>
 
+:nmap <Leader>s :source $MYVIMRC<CR>	" resource vimrc
+:nmap <Leader>v :e $MYVIMRC<CR>			" edit vimrc
+
 " Tab navigation
 map <C-t> :tabnew<CR>			" new tab 
-map <C-tab> :tabnext<CR>		" next tab
-map <C-S-tab> :tabprevious<CR>	" prev tab
+"map <C-tab> :tabnext<CR>		" next tab
+"map <C-S-tab> :tabprevious<CR>	" prev tab
 
 " NERDtree plugin
-map <C-f> :NERDTree<CR>			" open 
+map <C-f> :NERDTree<CR>			" open
+
+
+" Movement between tabs OR buffers
+nnoremap <C-l> :call MyNext()<CR>
+nnoremap <C-h> :call MyPrev()<CR>
+map <C-tab> :call MyNext()<CR>
+map <C-S-tab> :call MyPrev()<CR>
+
+" MyNext() and MyPrev(): Movement between tabs OR buffers
+" Taken from: http://stackoverflow.com/questions/53664/
+" how-to-effectively-work-with-multiple-files-in-vim 
+function! MyNext()
+	if exists( '*tabpagenr' ) && tabpagenr('$') != 1
+		" Tab support && tabs open
+		normal gt
+	else
+		" No tab support, or no tabs open
+		execute ":bnext"
+	endif
+endfunction
+
+function! MyPrev()
+	if exists( '*tabpagenr' ) && tabpagenr('$') != '1'
+		" Tab support && tabs open
+		normal gT
+	else
+		" No tab support, or no tabs open
+		execute ":bprev"
+	endif
+endfunction
+
+
