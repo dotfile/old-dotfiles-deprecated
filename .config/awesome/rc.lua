@@ -3,12 +3,10 @@ require("awful")
 require("awful.rules")
 require("awful.autofocus")
 require("beautiful")
--- Notification library
+-- User libs
 require("naughty")
 require("vicious")
 require("scratch")
-
--- Load Debian menu entries
 require("debian.menu")
 
 local home = os.getenv("HOME")
@@ -83,9 +81,20 @@ end
 
 -- XXX
 
+--------------
+-- Widgets
+--------------
 datewidget = widget({ type = "textbox" })
 vicious.register(datewidget, vicious.widgets.date, "%b %d, %R", 60) 
 
+baticon = widget({type = "imagebox" })
+baticon.image = image(beautiful.widget_bat)
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
+
+--------------
+-- Bar
+--------------
 mybar = awful.wibox({
 	position = "top",
 	height = 12,
@@ -94,7 +103,11 @@ mybar = awful.wibox({
 	border_color = beautiful.border_focus,
 	border_width = beautiful.border_width
 })
-mybar.widgets = { datewidget }
+mybar.widgets = { 
+	baticon, 
+	batwidget,
+	datewidget 
+}
 mybar.screen = 1
 
 -- XXX
