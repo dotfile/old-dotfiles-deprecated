@@ -51,7 +51,7 @@ let python_highlight_all = 1
 let python_slow_sync = 1
 
 " Set columns to 79
-set columns=79					" word wraps after 79
+set columns=85					" vim is only 85 columns wide 
 "set tw=79						" *force* margin at 79 characters
 
 " Highlight text going beyond column 79
@@ -65,6 +65,12 @@ match LenErr /\%>80v.*/ " Matches any over 80.
 "set vb t_vb=
 
 "set virtualedit=all
+
+" No arrow keys in command mode! (BAD HABBIT!)
+map <Up> :<CR>
+map <Down> :<CR>
+map <Left> :<CR>
+map <Right> :<CR>
 
 " Keyboard Mappings
 "map <F1> :previous<CR>	" open previous buffer
@@ -94,6 +100,7 @@ nnoremap <C-l> :call MyNext()<CR>
 nnoremap <C-h> :call MyPrev()<CR>
 map <C-tab> :call MyNext()<CR>
 map <C-S-tab> :call MyPrev()<CR>
+
 
 " MyNext() and MyPrev(): Movement between tabs OR buffers
 " Taken from: http://stackoverflow.com/questions/53664/
