@@ -1,46 +1,40 @@
--- Standard Awesome Library
+-- Standard awesome library
 require("awful")
-require("awful.autofocus")
 require("awful.rules")
-
--- User Library
+require("awful.autofocus")
 require("beautiful")
+-- Notification library
 require("naughty")
 require("vicious")
+require("scratch")
 
---require("debian.menu")
---require("scratch")
+-- Load Debian menu entries
+require("debian.menu")
 
-local altkey = "Mod1"
-local modkey = "Mod4"
+local home = os.getenv("HOME")
 
-local home   = os.getenv("HOME")
-local exec   = awful.util.spawn
-local sexec  = awful.util.spawn_with_shell
+beautiful.init(home .. "/.config/awesome/zenburn.lua")
 
--- Beautiful theme
-beautiful.init(home .. "/.config/awesome/themes/zenburn.lua")
-
--- This is used later as the default terminal and editor to run.
+-- Defaults
 terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
+modkey = "Mod4"
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    awful.layout.suit.magnifier,
+    awful.layout.suit.floating
 }
 
 -- Table of clients that should be set floating. The index may be either
@@ -86,6 +80,24 @@ for s = 1, screen.count() do
     tags[s][1].selected = true
 end
 -- }}}
+
+-- XXX
+
+datewidget = widget({ type = "textbox" })
+vicious.register(datewidget, vicious.widgets.date, "%b %d, %R", 60) 
+
+mybar = awful.wibox({
+	position = "top",
+	height = 12,
+	fg = beautiful.fg_normal,
+	bg = beautiful.bg_normal,
+	border_color = beautiful.border_focus,
+	border_width = beautiful.border_width
+})
+mybar.widgets = { datewidget }
+mybar.screen = 1
+
+-- XXX
 
 -- {{{ Wibox
 -- Create a textbox widget
