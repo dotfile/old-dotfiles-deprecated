@@ -35,7 +35,7 @@ set hidden				" allow editing multiple unsaved buffers
 if has("gui_running")
 	" .gvimrc
 	set guioptions-=T			" remove toolbar
-	"set guioptions-=m			" remove menu bar
+	set guioptions-=m			" remove menu bar
 	colorscheme darkspectrum	" gui colors (doesn't seem to work in vim)
 else
 	colorscheme darkspectrum " console colors	
