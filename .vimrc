@@ -30,6 +30,9 @@ set ttyfast				" smoother changes
 set ruler				" show line stats at bottom
 set number				" show line numbering
 
+set columns=85			" vim is only 85 columns wide 
+"set tw=79				" *force* margin at 79 characters
+
 set mouse=a				" mouse support in all modes
 set mousehide			" hide mouse when typing text
 
@@ -38,38 +41,35 @@ set wildmenu				" bash-like autocomplete
 
 set hidden				" allow editing multiple unsaved buffers
 
+set browsedir=current	" use pwd
+
+set shm=atAI			" shortmsg, ignore swapfiles, no intro
+
+
 if has("gui_running")
 	" .gvimrc
 	set guioptions-=T			" remove toolbar
 	set guioptions-=m			" remove menu bar
 	colorscheme darkspectrum	" gui colors (doesn't seem to work in vim)
 else
-	colorscheme darkspectrum " console colors	
+	colorscheme darkspectrum	" console colors	
 	"colorscheme desert			" console colors
-
 endif
 
-set browsedir=current
 
 " Python syntax highlighting
 let python_highlight_all = 1
 let python_slow_sync = 1
 
-" Set columns to 79
-set columns=85					" vim is only 85 columns wide 
-"set tw=79						" *force* margin at 79 characters
 
 " Highlight text going beyond column 79
 highlight LenErr ctermbg=darkred ctermfg=white guibg=#592929
-"match LenErr /\%80v.\+/	" Matches any over 79.
 match LenErr /\%>80v.*/ " Matches any over 80.
-
-" Markdown files
 
 
 "set vb t_vb=
-
 "set virtualedit=all
+
 
 " No arrow keys in command mode! (BAD HABBIT!)
 map <Up> :<CR>
