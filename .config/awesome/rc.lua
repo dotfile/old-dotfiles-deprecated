@@ -84,13 +84,26 @@ end
 --------------
 -- Widgets
 --------------
+separator = widget({ type = "imagebox" })
+separator.image = image(beautiful.widget_sep)
+
+dateicon = widget({type="imagebox"})
+dateicon.image = image(beautiful.widget_bat)
 datewidget = widget({ type = "textbox" })
 vicious.register(datewidget, vicious.widgets.date, "%b %d, %R", 60) 
 
 baticon = widget({type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
-batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
+
+battext0 = widget({ type = "textbox" })
+vicious.register(battext0, vicious.widgets.bat, "$2%", 61, "BAT0")
+
+battext1 = widget({ type = "textbox" })
+vicious.register(battext1, vicious.widgets.bat, "$1$2%", 61, "BAT1")
+
+
+testwidget = widget({type = "textbox" })
+testwidget.text = "testing..."
 
 --------------
 -- Bar
@@ -104,9 +117,15 @@ mybar = awful.wibox({
 	border_width = beautiful.border_width
 })
 mybar.widgets = { 
-	baticon, 
-	batwidget,
-	datewidget 
+	baticon,
+	battext0,
+	separator,
+	battext1,
+	separator,
+	dateicon, 
+	datewidget,
+	testwidget,
+	["layout"] = awful.widget.layout.horizontal.rightleft
 }
 mybar.screen = 1
 
