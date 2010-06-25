@@ -84,22 +84,26 @@ end
 --------------
 -- Widgets
 --------------
-separator = widget({ type = "textbox" })
-separator.text = " | "
+sep = widget({type="textbox"})
+sep.text = " | "
 
 dateicon = widget({type="imagebox"})
 dateicon.image = image(beautiful.widget_bat)
-datewidget = widget({ type = "textbox" })
-vicious.register(datewidget, vicious.widgets.date, "%b %d, %R", 60) 
 
 baticon = widget({type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
-battext1 = widget({ type = "textbox" })
-vicious.register(battext1, vicious.widgets.bat, "$1$2%", 61, "BAT1")
+
+date_info = widget({type="textbox"})
+bat_info = widget({type="textbox"})
+vol_info = widget({type="textbox"})
+wifi_info = widget({type="textbox"})
+
+vicious.register(date_info, vicious.widgets.date, "%b %d, %R", 60) 
+vicious.register(bat_info, vicious.widgets.bat, "$1$2%", 61, "BAT1")
+vicious.register(vol_info, vicious.widgets.volume, "vol $1%", 2, "Master")
+vicious.register(wifi_info, vicious.widgets.wifi, "${ssid} ${link}% ${rate} Mb/s", 5, "wlan0")
 
 
-testwidget = widget({type = "textbox" })
-testwidget.text = "testing..."
 
 --------------
 -- Bar
@@ -113,11 +117,13 @@ mybar = awful.wibox({
 	border_width = beautiful.border_width
 })
 mybar.widgets = { 
-	battext1,
-	separator,
-	dateicon, 
-	datewidget,
-	testwidget,
+	date_info,
+	sep,
+	wifi_info,
+	sep,
+	vol_info,
+	sep,
+	bat_info,
 	["layout"] = awful.widget.layout.horizontal.rightleft
 }
 mybar.screen = 1
