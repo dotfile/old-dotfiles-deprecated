@@ -101,8 +101,8 @@ map <C-f> :NERDTree<CR>			" open
 
 
 " Movement between tabs OR buffers
-nnoremap <C-l> :call MyNext()<CR>
-nnoremap <C-h> :call MyPrev()<CR>
+nnoremap <C-j> :call MyNext()<CR>
+nnoremap <C-k> :call MyPrev()<CR>
 map <C-tab> :call MyNext()<CR>
 map <C-S-tab> :call MyPrev()<CR>
 
