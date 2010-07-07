@@ -111,7 +111,7 @@ mybar = awful.wibox({
 	height = 12,
 	fg = beautiful.fg_normal,
 	bg = beautiful.bg_normal,
-	border_color = beautiful.border_focus,
+	border_color = beautiful.border_widget,
 	border_width = beautiful.border_width
 })
 mybar.widgets = { 
@@ -364,7 +364,7 @@ awful.hooks.focus.register(function (c)
     --    c.border_color = beautiful.border_focus
     --end
 	c.border_color = beautiful.border_focus
-	c.border_width = 3
+	c.border_width = beautiful.border_width
 end)
 
 -- Hook function to execute when unfocusing a client.
@@ -373,7 +373,7 @@ awful.hooks.unfocus.register(function (c)
     --    c.border_color = beautiful.border_normal
     --end
 	c.border_color = beautiful.border_normal
-	c.border_width = 3
+	c.border_width = beautiful.border_width
 end)
 
 -- Hook function to execute when marking a client
@@ -416,8 +416,8 @@ awful.hooks.manage.register(function (c, startup)
     ))
     -- New client may not receive focus
     -- if they're not focusable, so set border anyway.
-    c.border_width = 5 -- beautiful.border_width
-    c.border_color = "#FF0000" -- beautiful.border_normal
+    c.border_width = beautiful.border_width
+    c.border_color = beautiful.border_normal
 
     -- Check if the application should be floating.
     local cls = c.class
