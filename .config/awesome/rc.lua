@@ -11,7 +11,7 @@ require("debian.menu")
 
 local home = os.getenv("HOME")
 
-beautiful.init(home .. "/.config/awesome/zenburn.lua")
+beautiful.init(home .. "/.config/awesome/themes/zenburn/theme.lua")
 
 -- Defaults
 terminal = "x-terminal-emulator"
@@ -58,7 +58,7 @@ apptags =
 }
 
 -- Define if we want to use titlebar on all applications.
-use_titlebar = false
+use_titlebar = true
 -- }}}
 
 -- {{{ Tags
@@ -102,8 +102,6 @@ vicious.register(date_info, vicious.widgets.date, "%b %d, %R", 60)
 vicious.register(bat_info, vicious.widgets.bat, "$1$2%", 61, "BAT1")
 vicious.register(vol_info, vicious.widgets.volume, "vol $1%", 2, "Master")
 vicious.register(wifi_info, vicious.widgets.wifi, "${ssid} ${link}% ${rate} Mb/s", 5, "wlan0")
-
-
 
 --------------
 -- Bar
@@ -362,26 +360,30 @@ root.keys(globalkeys)
 -- {{{ Hooks
 -- Hook function to execute when focusing a client.
 awful.hooks.focus.register(function (c)
-    if not awful.client.ismarked(c) then
-        c.border_color = beautiful.border_focus
-    end
+    --if not awful.client.ismarked(c) then
+    --    c.border_color = beautiful.border_focus
+    --end
+	c.border_color = beautiful.border_focus
+	c.border_width = 3
 end)
 
 -- Hook function to execute when unfocusing a client.
 awful.hooks.unfocus.register(function (c)
-    if not awful.client.ismarked(c) then
-        c.border_color = beautiful.border_normal
-    end
+    --if not awful.client.ismarked(c) then
+    --    c.border_color = beautiful.border_normal
+    --end
+	c.border_color = beautiful.border_normal
+	c.border_width = 3
 end)
 
 -- Hook function to execute when marking a client
 awful.hooks.marked.register(function (c)
-    c.border_color = beautiful.border_marked
+    --c.border_color = beautiful.border_marked
 end)
 
 -- Hook function to execute when unmarking a client.
 awful.hooks.unmarked.register(function (c)
-    c.border_color = beautiful.border_focus
+    --c.border_color = beautiful.border_focus
 end)
 
 -- Hook function to execute when the mouse enters a client.
@@ -414,8 +416,8 @@ awful.hooks.manage.register(function (c, startup)
     ))
     -- New client may not receive focus
     -- if they're not focusable, so set border anyway.
-    c.border_width = beautiful.border_width
-    c.border_color = beautiful.border_normal
+    c.border_width = 5 -- beautiful.border_width
+    c.border_color = "#FF0000" -- beautiful.border_normal
 
     -- Check if the application should be floating.
     local cls = c.class
