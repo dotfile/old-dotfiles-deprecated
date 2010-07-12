@@ -32,6 +32,8 @@ set number				" show line numbering
 
 set columns=85			" vim is only 85 columns wide 
 "set tw=79				" *force* margin at 79 characters
+set wrap				" set wrapping text
+set linebreak			" wordwrap so words aren't broken
 
 set mouse=a				" mouse support in all modes
 set mousehide			" hide mouse when typing text
@@ -45,15 +47,15 @@ set browsedir=current	" use pwd
 
 set shm=atAI			" shortmsg, ignore swapfiles, no intro
 
-
+set t_Co=256			" Terminal supports 256 colors
 if has("gui_running")
 	" .gvimrc
 	set guioptions-=T			" remove toolbar
 	set guioptions-=m			" remove menu bar
-	colorscheme darkspectrum	" gui colors (doesn't seem to work in vim)
+	colorscheme darkspectrum	" gui colors 
 else
-	colorscheme darkspectrum	" console colors	
-	"colorscheme desert			" console colors
+	"colorscheme darkspectrum	" console colors	
+	colorscheme desert			" console colors
 endif
 
 
@@ -61,17 +63,22 @@ endif
 let python_highlight_all = 1
 let python_slow_sync = 1
 
+" Markdowk
+au BufRead *.mkd set filetype=mkd
+
 
 " Highlight text going beyond column 79
-highlight LenErr ctermbg=darkred ctermfg=white guibg=#592929
-match LenErr /\%>80v.*/ " Matches any over 80.
+"highlight LenErr ctermbg=darkred ctermfg=white guibg=#592929
+"highlight LenErr ctermbg=black ctermfg=yellow guibg=#592929
+"match LenErr /\%>80v.*/ " Matches any over 80.
 
 
 "set vb t_vb=
 "set virtualedit=all
 
 
-" No arrow keys in command mode! (BAD HABBIT!)
+" No arrow keys in command mode! 
+" This is a BAD HABBIT, and this should break me of it
 map <Up> :<CR>
 map <Down> :<CR>
 map <Left> :<CR>
@@ -91,21 +98,21 @@ nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>
 :nmap <Leader>s :source $MYVIMRC<CR>	" resource vimrc
 :nmap <Leader>v :e $MYVIMRC<CR>			" edit vimrc
 
-" Tab navigation
-map <C-t> :tabnew<CR>			" new tab 
-"map <C-tab> :tabnext<CR>		" next tab
-"map <C-S-tab> :tabprevious<CR>	" prev tab
+" Open NERDtree plugin
+map <C-f> :NERDTree<CR>
 
-" NERDtree plugin
-map <C-f> :NERDTree<CR>			" open
-
+" New tab
+map <C-t> :tabnew<CR>
 
 " Movement between tabs OR buffers
 nnoremap <C-j> :call MyNext()<CR>
 nnoremap <C-k> :call MyPrev()<CR>
-map <C-tab> :call MyNext()<CR>
-map <C-S-tab> :call MyPrev()<CR>
-
+nnoremap <C-h> :call MyPrev()<CR>
+nnoremap <C-l> :call MyNext()<CR>
+nnoremap <C-n> :call MyNext()<CR>
+nnoremap <C-p> :call MyPrev()<CR>
+nnoremap <C-Right> :call MyNext()<CR>
+nnoremap <C-Left> :call MyPrev()<CR>
 
 " MyNext() and MyPrev(): Movement between tabs OR buffers
 " Taken from: http://stackoverflow.com/questions/53664/
@@ -130,4 +137,7 @@ function! MyPrev()
 	endif
 endfunction
 
+" Color scheme shifter plugin (F8 switches)
+"source ~/.vim/plugin/setcolors.vim
+"SetColors all
 

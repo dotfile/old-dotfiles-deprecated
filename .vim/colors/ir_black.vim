@@ -61,7 +61,7 @@ if exists("syntax_on")
 endif
 
 let colors_name = "ir_black"
-
+let g:colors_name = "ir_black"
 
 "hi Example         guifg=NONE        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
