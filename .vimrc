@@ -48,14 +48,16 @@ set browsedir=current	" use pwd
 set shm=atAI			" shortmsg, ignore swapfiles, no intro
 
 set t_Co=256			" Terminal supports 256 colors
+
+set hlsearch			" Turn on search highlighting
+
 if has("gui_running")
 	" .gvimrc
 	set guioptions-=T			" remove toolbar
 	set guioptions-=m			" remove menu bar
 	colorscheme darkspectrum	" gui colors 
 else
-	"colorscheme darkspectrum	" console colors	
-	colorscheme desert			" console colors
+	colorscheme lucius2			" console colors
 endif
 
 
