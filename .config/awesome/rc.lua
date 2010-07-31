@@ -28,11 +28,11 @@ layouts =
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.max,
+    --awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    awful.layout.suit.floating
+    --awful.layout.suit.floating
 }
 
 -- Table of clients that should be set floating. The index may be either
@@ -98,14 +98,16 @@ bat_info = widget({type="textbox"})
 vol_info = widget({type="textbox"})
 wifi_info = widget({type="textbox"})
 
-vicious.register(date_info, vicious.widgets.date, "%b %d, %R", 60) 
+vicious.register(date_info, vicious.widgets.date, "<b>%b %d, %R </b>", 60) 
 vicious.register(bat_info, vicious.widgets.bat, "$1$2%", 61, "BAT1")
 vicious.register(vol_info, vicious.widgets.volume, 
 					"vol $1%", 2, "Master")
 vicious.register(wifi_info, vicious.widgets.wifi, 
 					"${ssid} ${link}% ${rate} Mb/s", 5, "wlan0")
 
-promptbox = awful.widget.prompt({ align = "left" })
+promptbox = awful.widget.prompt({ align = "left", prompt= "Run: " })
+
+layoutbox = awful.widget.layoutbox()
 
 --------------
 -- Bar
@@ -122,6 +124,7 @@ mybar = awful.wibox({
 -- R to L layout.
 mybar.widgets = { 
 	promptbox,
+	layoutbox,
 	date_info,
 	sep,
 	wifi_info,
@@ -276,6 +279,7 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey, }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
+    awful.key({ modkey, "Shift" }, "r", awesome.restart),
     awful.key({ modkey, "Shift" }, "q", awesome.quit),
 
     awful.key({ modkey, }, "l", function () awful.tag.incmwfact(0.05) end),
@@ -286,6 +290,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l", function () awful.tag.incncol(-1) end),
     awful.key({ modkey, }, "space", function () awful.layout.inc(layouts, 1) end),
     awful.key({ modkey, "Shift" }, "space", function () awful.layout.inc(layouts, -1) end),
+	
+	-- Lock screen
+	awful.key({ modkey }, "d", function () awful.util.spawn("xscreensaver-command -lock") end),
+	awful.key({"Control", "Shift"}, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () promptbox:run() end),
@@ -484,3 +492,9 @@ awful.hooks.timer.register(60, function ()
     mytextbox.text = os.date(" %a %b %d, %H:%M ")
 end)
 -- }}}
+
+--client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+--client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--client.add_signal("manage", function (c, startup) c.size_hints_honor = false end)
+
+
