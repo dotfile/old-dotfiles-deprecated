@@ -79,9 +79,7 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- XXX:
-
 require("widgets")
+require("callbacks")
 require("keybindings")
-require("hooks")
 

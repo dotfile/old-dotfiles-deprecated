@@ -30,6 +30,52 @@ layoutbox = awful.widget.layoutbox()
 --taglist = awful.widget.taglist(1, awful.widget.taglist.filter.all, taglist.buttons)
 
 --mytasklist = awful.widget.tasklist(awful.widget.tasklist.filter.currenttags, tasklist.buttons)
+--systray = widget({ type = "systray", align = "right" })
+
+
+taglist = {}
+taglist.buttons = awful.util.table.join(
+                    awful.button({ }, 1, awful.tag.viewonly),
+                    awful.button({ modkey }, 1, awful.client.movetotag),
+                    awful.button({ }, 3, function (tag) tag.selected = not tag.selected end),
+                    awful.button({ modkey }, 3, awful.client.toggletag),
+                    awful.button({ }, 4, awful.tag.viewnext),
+                    awful.button({ }, 5, awful.tag.viewprev)
+                    )
+taglist = awful.widget.taglist(1, awful.widget.taglist.label.noempty, taglist.buttons)
+
+tasklist = {}
+tasklist.buttons = awful.util.table.join(
+		awful.button({ }, 1, function (c)
+			if not c:isvisible() then
+				awful.tag.viewonly(c:tags()[1])
+			end
+			client.focus = c
+			c:raise()
+		end),
+
+		awful.button({ }, 3, function ()
+			if instance then
+				instance:hide()
+				instance = nil
+			else
+				instance = awful.menu.clients({ width=250 })
+			end
+        end),
+
+		awful.button({ }, 4, function ()
+			awful.client.focus.byidx(1)
+			if client.focus then client.focus:raise() end
+		end),
+
+		awful.button({ }, 5, function ()
+			awful.client.focus.byidx(-1)
+			if client.focus then client.focus:raise() end
+		end))
+
+tasklist = awful.widget.tasklist(function(c)
+		return awful.widget.tasklist.label.currenttags(c, 1)
+    end, tasklist.buttons)
 
 
 --------------
@@ -55,6 +101,9 @@ mybar.widgets = {
 	vol_info,
 	sep,
 	bat_info,
+	taglist,
+	tasklist,
+	--systray,
 	["layout"] = awful.widget.layout.horizontal.rightleft
 }
 mybar.screen = 1
@@ -158,5 +207,4 @@ for s = 1, screen.count() do
     mywibox[s].screen = s
 end
 -- }}}
-
 
