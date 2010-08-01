@@ -8,11 +8,11 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper_cmd = { "awsetbg /usr/local/share/awesome/themes/zenburn/zenburn-background.png" }
+theme.wallpaper_cmd = { "awsetbg \"/home/brandon/Images/wallpaper/scaled/sunrise-beach-scaled.jpg\"" }
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 8"
+theme.font      = "bitstream vera sans 8"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
@@ -24,9 +24,9 @@ theme.bg_urgent = "#3F3F3F"
 -- }}}
 
 -- {{{ Borders
-theme.border_width  = "2"
+theme.border_width  = "1" -- "2"
 theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#AA3333" --"#6F6F6F"
+theme.border_focus  = "#666666" -- "#AA3333" --"#6F6F6F"
 theme.border_marked = "#CC9393"
 -- }}}
 

@@ -14,7 +14,7 @@ local home = os.getenv("HOME")
 beautiful.init(home .. "/.config/awesome/themes/zenburn/theme.lua")
 
 -- Defaults
-terminal = "x-terminal-emulator"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
