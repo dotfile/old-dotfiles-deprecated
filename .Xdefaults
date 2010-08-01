@@ -1,0 +1,27 @@
+## Xdefaults file
+## see http://wiki.archlinux.org/index.php/Xdefaults
+
+! urxvt ----------------------------------------- 
+
+URxvt*termName:	rxvt
+
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12:antialias=true
+URxvt*transparent:	true
+URxvt*shading:		10
+URxvt*foreground:	white
+URxvt*background:	rgba:0000/0000/0000/cccc
+
+URxvt*scrollBar:		false
+URxvt*scrollBar_right:	false
+URxvt*urlLauncher:		/usr/bin/firefox
+
+
+URxvt*inheritPixmap: false
+URxvt*tintColor: #1A1A1A
+
+
+
+! xterm ----------------------------------------- 
+
+xterm*termName: xterm
+
