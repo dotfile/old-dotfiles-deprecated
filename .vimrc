@@ -57,7 +57,7 @@ if has("gui_running")
 	set guioptions-=m			" remove menu bar
 	colorscheme lucius2			" gui colors 
 else
-	colorscheme lucius2			" console colors
+	colorscheme lucius2_transparent " console colors
 endif
 
 
