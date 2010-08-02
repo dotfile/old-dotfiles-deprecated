@@ -13,11 +13,9 @@ URxvt*scrollBar:		false
 URxvt*scrollBar_right:	false
 URxvt*urlLauncher:		/usr/bin/firefox
 
-URxvt*transparent:	false	
-!URxvt*shading:		40
-!URxvt*inheritPixmap: true
-!URxvt*tintColor: 	#AAAAAA
-!URxvt*tint:		white
+URxvt*transparent:	true	
+URxvt*shading:		17	
+URxvt*inheritPixmap: true
 
 URxvt*color0:      #000000
 URxvt*color1:      #A80000
