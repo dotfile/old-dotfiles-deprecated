@@ -11,3 +11,4 @@ xscreensaver -no-splash &
 
 # This must be last
 exec awesome
+#exec /usr/bin/qtile

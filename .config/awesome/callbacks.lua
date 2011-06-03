@@ -10,7 +10,7 @@ end)
 
 client.add_signal("focus", function (c)
 	c.border_color = beautiful.border_focus
-	c.border_width = beautiful.border_width
+	c.border_width = beautiful.border_width_focus
 end)
 
 

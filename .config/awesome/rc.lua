@@ -7,7 +7,6 @@ require("beautiful")
 require("naughty")
 require("vicious")
 require("scratch")
-require("debian.menu")
 
 local home = os.getenv("HOME")
 
@@ -19,6 +18,7 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 modkey = "Mod4"
+
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -35,31 +35,6 @@ layouts =
     --awful.layout.suit.floating
 }
 
--- Table of clients that should be set floating. The index may be either
--- the application class or instance. The instance is useful when running
--- a console app in a terminal like (Music on Console)
---    x-terminal-emulator -name mocp -e mocp
-floatapps =
-{
-    -- by class
-    ["MPlayer"] = true,
-    ["pinentry"] = true,
-    ["gimp"] = true,
-    -- by instance
-    ["mocp"] = true
-}
-
--- Applications to be moved to a pre-defined tag by class or instance.
--- Use the screen and tags indices.
-apptags =
-{
-    -- ["Firefox"] = { screen = 1, tag = 2 },
-    -- ["mocp"] = { screen = 2, tag = 4 },
-}
-
--- Define if we want to use titlebar on all applications.
-use_titlebar = false 
--- }}}
 
 -- {{{ Tags
 -- Define tags table.
@@ -77,6 +52,31 @@ for s = 1, screen.count() do
     -- I'm sure you want to see at least one tag.
     tags[s][1].selected = true
 end
+-- }}}
+
+
+-- {{{ Rules
+awful.rules.rules = {
+    -- All clients will match this rule.
+    { rule = {},
+		properties = {
+			border_width = beautiful.border_width,
+			border_color = beautiful.border_normal,
+			focus = true,
+			size_hints_honor = false -- fix gaps
+		}
+	},
+
+    { rule = { class = "MPlayer" },
+		properties = { floating = true } },
+	
+	{ rule = { class = "gimp" },
+		properties = { floating = true } },
+
+	-- Set Firefox to always map on tags number 2 of screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { tag = tags[1][2] } },
+}
 -- }}}
 
 require("widgets")

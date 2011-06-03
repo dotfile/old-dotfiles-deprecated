@@ -8,7 +8,9 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper_cmd = { "awsetbg \"/home/brandon/Images/wallpaper/scaled/sunrise-beach-scaled.jpg\"" }
+--theme.wallpaper_cmd = { "awsetbg \"/home/brandon/Images/wallpaper/scaled/sunrise-beach-scaled.jpg\"" }
+--theme.wallpaper_cmd = { "awsetbg \"/home/brandon/Images/wallpaper/scaled/bryce_canyon_scaled.jpg\"" }
+theme.wallpaper_cmd = { "awsetbg \"/home/brandon/Images/wallpaper/scaled/thunderhead-plane-scaled.jpg\"" }
 -- }}}
 
 -- {{{ Styles
@@ -25,8 +27,9 @@ theme.bg_urgent = "#3F3F3F"
 
 -- {{{ Borders
 theme.border_width  = "1" -- "2"
+theme.border_width_focus = "2"
 theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#666666" -- "#AA3333" --"#6F6F6F"
+theme.border_focus  = "#AA3333" -- "#AAAAAA" -- "#AA3333" --"#6F6F6F"
 theme.border_marked = "#CC9393"
 -- }}}
 
